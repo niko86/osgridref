@@ -120,7 +120,7 @@ class OSGridRef(object):
 
         return n + e
 
-    @staticmethod
+    @classmethod
     def _string_maker(cls, easting: int, northing: int, pair: int = 1, sec_pair: int = None):
         instance = cls(easting, northing)
         primary_pair = instance._primary_pair()
@@ -138,37 +138,37 @@ class OSGridRef(object):
 
     @classmethod
     def grid_10km(cls, easting: int, northing: int):
-        pri, e, n = cls._string_maker(cls, easting, northing, pair=1)
+        pri, e, n = cls._string_maker(easting, northing, pair=1)
         return f'{pri} {e}{n}'
 
     @classmethod
     def grid_5km(cls, easting: int, northing: int):
-        pri, e, n, sec = cls._string_maker(cls, easting, northing, pair=1, sec_pair=2)
+        pri, e, n, sec = cls._string_maker(easting, northing, pair=1, sec_pair=2)
         return f'{pri} {e}{n} {sec}'
 
     @classmethod
     def grid_1km(cls, easting: int, northing: int):
-        pri, e, n = cls._string_maker(cls, easting, northing, pair=2)
+        pri, e, n = cls._string_maker(easting, northing, pair=2)
         return f'{pri} {e} {n}'
 
     @classmethod
     def grid_500m(cls, easting: int, northing: int):
-        pri, e, n, sec = cls._string_maker(cls, easting, northing, pair=2, sec_pair=4)
+        pri, e, n, sec = cls._string_maker(easting, northing, pair=2, sec_pair=4)
         return f'{pri} {e} {n} {sec}'
 
     @classmethod
     def grid_100m(cls, easting: int, northing: int):
-        pri, e, n = cls._string_maker(cls, easting, northing, pair=3)
+        pri, e, n = cls._string_maker(easting, northing, pair=3)
         return f'{pri} {e} {n}'
 
     @classmethod
     def grid_10m(cls, easting: int, northing: int):
-        pri, e, n = cls._string_maker(cls, easting, northing, pair=4)
+        pri, e, n = cls._string_maker(easting, northing, pair=4)
         return f'{pri} {e} {n}'
 
     @classmethod
     def grid_1m(cls, easting: int, northing: int):
-        pri, e, n = cls._string_maker(cls, easting, northing, pair=5)
+        pri, e, n = cls._string_maker(easting, northing, pair=5)
         return f'{pri} {e} {n}'
 
 
