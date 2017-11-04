@@ -2,7 +2,7 @@ import math
 
 class OSGridRef(object):
 
-    """
+    """OSGrid Ref Class
 
     >>> OSGridRef.grid_100km(403123, 439567)
     'SE'
@@ -40,9 +40,53 @@ class OSGridRef(object):
 
     """
 
-    def __init__(self, easting: int, northing: int):
+    def __init__(self, easting, northing):
         self.easting = easting
         self.northing = northing
+
+    @property
+    def easting(self):
+        return self._easting
+
+    @easting.setter
+    def easting(self, e):
+
+        def limits(e):
+            if (e < 0) or (e >= 700000):
+                raise ValueError('easting not between 0 and 700000')
+            else:
+                return e
+
+        if isinstance(e, int):
+            self._easting = limits(e)
+        else:
+            try:
+                e = int(e)
+                self._easting = limits(e)
+            except:
+                raise TypeError('easting must be an integer')
+
+    @property
+    def northing(self):
+        return self._northing
+
+    @northing.setter
+    def northing(self, n):
+
+        def limits(n):
+            if (n < 0) or (n >= 1300000):
+                raise ValueError('northing not between 0 and 1300000')
+            else:
+                return n
+
+        if isinstance(n, int):
+            self._northing = limits(n)
+        else:
+            try:
+                n = int(n)
+                self._northing = limits(n)
+            except:
+                raise TypeError('northing must be an integer')
 
     def _primary_pair(self):
         grid_chars = 'ABCDEFGHJKLMNOPQRSTUVWXYZ'
