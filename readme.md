@@ -1,0 +1,1 @@
+Convert OSGB coordinates into Ordnance Survey grid references.
